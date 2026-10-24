@@ -1,0 +1,41 @@
+city,locality,ward_id,ward_name,zone,nodal_officer
+Bengaluru,Indiranagar,DEMO-WARD-BLR-074,Ward 74 - Indiranagar East (Demo),East Zone (Demo),Demo Officer R. Sharma
+Bengaluru,Koramangala,DEMO-WARD-BLR-151,Ward 151 - Koramangala Central (Demo),South Zone (Demo),Demo Officer P. Kulkarni
+Bengaluru,Whitefield,DEMO-WARD-BLR-084,Ward 84 - Whitefield Tech Zone (Demo),Mahadevapura Zone (Demo),Demo Officer S. Rao
+Bengaluru,HSR Layout,DEMO-WARD-BLR-174,Ward 174 - HSR Sector 2 (Demo),Bommanahalli Zone (Demo),Demo Officer A. Hegde
+Bengaluru,Jayanagar,DEMO-WARD-BLR-169,Ward 169 - Jayanagar 4th Block (Demo),South Zone (Demo),Demo Officer V. Iyer
+Bengaluru,Malleshwaram,DEMO-WARD-BLR-065,Ward 65 - Malleshwaram North (Demo),West Zone (Demo),Demo Officer N. Bhat
+Bengaluru,Bellandur,DEMO-WARD-BLR-150,Ward 150 - Bellandur Lake Region (Demo),Mahadevapura Zone (Demo),Demo Officer M. George
+Bengaluru,Electronic City,DEMO-WARD-BLR-192,Ward 192 - Electronic City Phase 1 (Demo),Anekal Region (Demo),Demo Officer K. Reddy
+Mumbai,Bandra West,DEMO-WARD-MUM-HW01,Ward H/West - Bandra Hill Road (Demo),Zone III (Demo),Demo Officer F. D'Souza
+Mumbai,Andheri East,DEMO-WARD-MUM-KE04,Ward K/East - Andheri MIDC (Demo),Zone IV (Demo),Demo Officer S. Patil
+Mumbai,Dadar,DEMO-WARD-MUM-GN02,Ward G/North - Dadar Shivaji Park (Demo),Zone II (Demo),Demo Officer R. Deshmukh
+Mumbai,Powai,DEMO-WARD-MUM-SA03,Ward S - Powai Lakeview (Demo),Zone VI (Demo),Demo Officer V. Nair
+Mumbai,Colaba,DEMO-WARD-MUM-AA01,Ward A - Colaba Causeway (Demo),Zone I (Demo),Demo Officer M. Mehta
+Mumbai,Malad,DEMO-WARD-MUM-PN05,Ward P/North - Malad Link Road (Demo),Zone IV (Demo),Demo Officer J. Shah
+Mumbai,Borivali,DEMO-WARD-MUM-RC02,Ward R/Central - Borivali West (Demo),Zone VII (Demo),Demo Officer T. Shinde
+Mumbai,Kurla,DEMO-WARD-MUM-LL01,Ward L - Kurla Station West (Demo),Zone V (Demo),Demo Officer A. Khan
+Delhi,Connaught Place,DEMO-WARD-DEL-ND01,Ward 01 - Connaught Inner Circle (Demo),New Delhi Zone (Demo),Demo Officer G. Singh
+Delhi,Lajpat Nagar,DEMO-WARD-DEL-SZ08,Ward 08 - Lajpat Nagar Market (Demo),South Zone (Demo),Demo Officer M. Kapoor
+Delhi,Karol Bagh,DEMO-WARD-DEL-KB03,Ward 03 - Karol Bagh Metro (Demo),Central Zone (Demo),Demo Officer R. Verma
+Delhi,Rohini,DEMO-WARD-DEL-RO12,Ward 12 - Rohini Sector 9 (Demo),North-West Zone (Demo),Demo Officer H. Gupta
+Delhi,Saket,DEMO-WARD-DEL-SZ14,Ward 14 - Saket District Center (Demo),South Zone (Demo),Demo Officer S. Malik
+Delhi,Dwarka,DEMO-WARD-DEL-SW06,Ward 06 - Dwarka Sector 10 (Demo),South-West Zone (Demo),Demo Officer B. Yadav
+Delhi,Chandni Chowk,DEMO-WARD-DEL-CZ02,Ward 02 - Chandni Chowk Heritage (Demo),City-SP Zone (Demo),Demo Officer A. Qureshi
+Delhi,Vasant Kunj,DEMO-WARD-DEL-SZ20,Ward 20 - Vasant Kunj Pocket C (Demo),South Zone (Demo),Demo Officer D. Joshi
+Ahmedabad,Navrangpura,DEMO-WARD-AMD-WZ01,Ward 01 - Navrangpura Stadium (Demo),West Zone (Demo),Demo Officer H. Patel
+Ahmedabad,Satellite,DEMO-WARD-AMD-NW02,Ward 02 - Satellite Shivranjani (Demo),North-West Zone (Demo),Demo Officer K. Shah
+Ahmedabad,Vastrapur,DEMO-WARD-AMD-NW05,Ward 05 - Vastrapur Lake (Demo),North-West Zone (Demo),Demo Officer P. Dave
+Ahmedabad,Bodakdev,DEMO-WARD-AMD-NW08,Ward 08 - Bodakdev Judges Bung (Demo),North-West Zone (Demo),Demo Officer N. Prajapati
+Ahmedabad,Maninagar,DEMO-WARD-AMD-SZ04,Ward 04 - Maninagar Kankaria (Demo),South Zone (Demo),Demo Officer C. Rathod
+Ahmedabad,Paldi,DEMO-WARD-AMD-WZ06,Ward 06 - Paldi Cross Road (Demo),West Zone (Demo),Demo Officer M. Trivedi
+Ahmedabad,SG Highway,DEMO-WARD-AMD-NW11,Ward 11 - SG Highway Gota (Demo),North-West Zone (Demo),Demo Officer S. Parmar
+Ahmedabad,Thaltej,DEMO-WARD-AMD-NW14,Ward 14 - Thaltej Shilaj (Demo),North-West Zone (Demo),Demo Officer B. Bhatt
+Pune,Kothrud,DEMO-WARD-PUN-09,Ward 09 - Kothrud Ideal Colony (Demo),Zone 2 (Demo),Demo Officer S. Joshi
+Pune,Viman Nagar,DEMO-WARD-PUN-03,Ward 03 - Viman Nagar Symbiosis (Demo),Zone 1 (Demo),Demo Officer A. More
+Pune,Hinjewadi,DEMO-WARD-PUN-15,Ward 15 - Hinjewadi Phase 1 (Demo),PCMC Region (Demo),Demo Officer R. Gaikwad
+Pune,Baner,DEMO-WARD-PUN-07,Ward 07 - Baner High Street (Demo),Zone 2 (Demo),Demo Officer D. Kadam
+Pune,Wakad,DEMO-WARD-PUN-12,Ward 12 - Wakad Dutta Mandir (Demo),PCMC Region (Demo),Demo Officer V. Thorat
+Pune,Shivaji Nagar,DEMO-WARD-PUN-01,Ward 01 - Shivaji Nagar FC Road (Demo),Zone 3 (Demo),Demo Officer K. Shinde
+Pune,Koregaon Park,DEMO-WARD-PUN-05,Ward 05 - KP North Main Road (Demo),Zone 1 (Demo),Demo Officer M. Wagh
+Pune,Hadapsar,DEMO-WARD-PUN-18,Ward 18 - Hadapsar Magarpatta (Demo),Zone 4 (Demo),Demo Officer T. Bhosale
