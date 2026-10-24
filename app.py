@@ -200,11 +200,11 @@ with tab_report:
             image_hash = tools.compute_image_hash(image_bytes)
             st.caption(f"SHA-256 Signature: `{image_hash[:20]}...`")
         else:
-            st.markdown("""
+            components.render_html("""
                 <div style="border: 2px dashed #CBD5E1; border-radius: 12px; padding: 40px; text-align: center; color: #94A3B8;">
                     📷 Photo preview will appear here.<br>Select a sample from the sidebar or upload an image.
                 </div>
-            """, unsafe_allow_html=True)
+            """)
 
     # Analyze Button
     analyze_col1, analyze_col2 = st.columns([1, 3])
@@ -305,7 +305,7 @@ with tab_report:
         corrected_desc = st.text_area(
             "Complaint Description",
             value=analysis.get("suggested_description", f"Civic issue reported in {p_state['locality']}."),
-            rows=3
+            height=100
         )
 
         # Explicit Confirmation Requirement
@@ -364,7 +364,7 @@ with tab_report:
                         st.success(f"🎉 **Complaint Successfully Registered!**")
                         st.balloons()
                         
-                        st.markdown(f"""
+                        components.render_html(f"""
                             <div class="nazar-card" style="border-left: 6px solid #10B981;">
                                 <h3 style="margin-top: 0; color: #0F766E;">Official Municipal Tracking Pass</h3>
                                 <p style="font-size: 1.2rem; font-weight: 700; color: #102A43;">
@@ -375,7 +375,7 @@ with tab_report:
                                 <strong>Status:</strong> <span style="background-color: #FEF3C7; color: #D97706; padding: 3px 8px; border-radius: 4px; font-weight: 700;">PENDING</span></p>
                                 <p style="font-size: 0.9rem; color: #64748B;">You can copy this ID to track real-time resolution progress in the <strong>Tracking Assistant</strong> tab.</p>
                             </div>
-                        """, unsafe_allow_html=True)
+                        """)
 
 
 # ==============================================================================

@@ -348,10 +348,18 @@ html, body, [class*="css"] {
 """
 
 
+import textwrap
+
+
+def render_html(html_str: str):
+    """Safely dedent and render HTML in Streamlit without triggering Markdown indented code block formatting."""
+    st.markdown(textwrap.dedent(html_str).strip(), unsafe_allow_html=True)
+
+
 def render_header():
     """Renders the top branding and hackathon banner."""
     st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
-    st.markdown("""
+    render_html("""
         <div class="nazar-header">
             <div class="nazar-title">
                 <span>🛡️ NazarSetu</span>
@@ -361,17 +369,17 @@ def render_header():
                 From a single photograph to meaningful civic action — powered by autonomous AI agents.
             </div>
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
 
 def render_disclaimer():
     """Renders the hackathon prototype disclaimer banner."""
-    st.markdown(f"""
+    render_html(f"""
         <div class="disclaimer-banner">
             <span>ℹ️</span>
             <div><strong>Hackathon MVP Demonstration:</strong> {DEMO_DISCLAIMER}</div>
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
 
 def render_issue_dna(dna_data: Dict[str, Any], locality: str = "", city: str = ""):
@@ -399,11 +407,7 @@ def render_issue_dna(dna_data: Dict[str, Any], locality: str = "", city: str = "
 
     uncertainty_html = ""
     if uncertainties:
-        uncertainty_html = f"""
-            <div style="margin-top: 12px; background-color: #FEF3C7; border: 1px solid #FCD34D; border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; color: #92400E;">
-                ⚠️ <strong>Uncertainty / Notice:</strong> {' • '.join(uncertainties)}
-            </div>
-        """
+        uncertainty_html = f"""<div style="margin-top: 12px; background-color: #FEF3C7; border: 1px solid #FCD34D; border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; color: #92400E;">⚠️ <strong>Uncertainty / Notice:</strong> {' • '.join(uncertainties)}</div>"""
 
     html = f"""
     <div class="issue-dna-card">
@@ -414,7 +418,6 @@ def render_issue_dna(dna_data: Dict[str, Any], locality: str = "", city: str = "
             </div>
             <span class="dna-badge {badge_class}">{priority} Priority</span>
         </div>
-        
         <div class="dna-grid">
             <div class="dna-item">
                 <div class="dna-label">Problem Identified</div>
@@ -440,7 +443,7 @@ def render_issue_dna(dna_data: Dict[str, Any], locality: str = "", city: str = "
         {uncertainty_html}
     </div>
     """
-    st.markdown(html, unsafe_allow_html=True)
+    render_html(html)
 
 
 def render_action_trail(steps: List[Dict[str, Any]]):
@@ -475,7 +478,7 @@ def render_action_trail(steps: List[Dict[str, Any]]):
             <div class="step-expl">{expl}</div>
         </div>
         """
-        st.markdown(step_html, unsafe_allow_html=True)
+        render_html(step_html)
         with st.expander(f"Inspect Tool Execution Payload: `{tool_name}()`"):
             st.code(formatted_output, language="json")
 
@@ -484,7 +487,6 @@ def render_status_tracker(current_status: str):
     """Renders the 3-stage status tracker: Pending -> In Progress -> Resolved."""
     status_clean = current_status.strip().title()
 
-    # Determine node states
     is_pending_done = status_clean in ["Pending", "In Progress", "Resolved"]
     is_pending_active = status_clean == "Pending"
 
@@ -521,37 +523,38 @@ def render_status_tracker(current_status: str):
         </div>
     </div>
     """
-    st.markdown(html, unsafe_allow_html=True)
+    render_html(html)
 
 
 def render_stat_counters(stats: Dict[str, int]):
     """Renders 4 metric cards for the Admin Dashboard."""
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.markdown(f"""
+        render_html(f"""
             <div class="stat-card">
                 <div class="stat-num">{stats.get('total', 0)}</div>
                 <div class="stat-label">Total Reports</div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col2:
-        st.markdown(f"""
+        render_html(f"""
             <div class="stat-card" style="border-top: 4px solid #F59E0B;">
                 <div class="stat-num" style="color: #D97706;">{stats.get('pending', 0)}</div>
                 <div class="stat-label">Pending Action</div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col3:
-        st.markdown(f"""
+        render_html(f"""
             <div class="stat-card" style="border-top: 4px solid #3B82F6;">
                 <div class="stat-num" style="color: #2563EB;">{stats.get('in_progress', 0)}</div>
                 <div class="stat-label">In Progress</div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col4:
-        st.markdown(f"""
+        render_html(f"""
             <div class="stat-card" style="border-top: 4px solid #10B981;">
                 <div class="stat-num" style="color: #059669;">{stats.get('resolved', 0)}</div>
                 <div class="stat-label">Resolved</div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
+
