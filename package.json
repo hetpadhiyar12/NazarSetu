@@ -1,0 +1,18 @@
+{
+  "name": "nazarsetu",
+  "version": "1.0.0",
+  "description": "NazarSetu — Agentic AI Civic Action Platform",
+  "scripts": {
+    "dev": "./venv/bin/streamlit run app.py",
+    "start": "./venv/bin/streamlit run app.py",
+    "test": "./venv/bin/pytest tests/ -v"
+  },
+  "keywords": [
+    "agentic-ai",
+    "civic-tech",
+    "smart-cities",
+    "nazarsetu"
+  ],
+  "author": "NazarSetu Team",
+  "license": "MIT"
+}
