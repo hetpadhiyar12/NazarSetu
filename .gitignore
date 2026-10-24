@@ -1,8 +1,29 @@
-venv/
-__pycache__/
-*.pyc
+# Environment variables & secrets
 .env
-*.db
+.env.*
+!.env.example
+*.local
+
+# Virtual environments & dependencies
+venv/
+.venv/
+node_modules/
+
+# Python cache & build
+__pycache__/
+*.py[cod]
+*$py.class
 .pytest_cache/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+data/*.sqlite*
+
+# System & IDE artifacts
 .DS_Store
 .streamlit/
+*.log
+.system_generated/
