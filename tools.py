@@ -248,15 +248,20 @@ def get_complaint_status(complaint_id: str, db_path: Path = DB_PATH) -> Dict[str
     return {
         "status": "found",
         "complaint_id": record["id"],
+        "idempotency_key": record.get("idempotency_key"),
         "issue_type": record["issue_type"],
         "current_status": record["status"],
         "department": record["department"],
         "ward": record["ward"],
         "locality": record["locality"],
         "city": record["city"],
+        "landmark": record.get("landmark", ""),
         "priority": record["priority"],
+        "ai_mode": record.get("ai_mode", "AI_VERIFIED"),
         "updated_at": record["updated_at"],
         "description": record["description"],
+        "visual_evidence": record.get("visual_evidence"),
+        "uncertainty_notes": record.get("uncertainty_notes"),
     }
 
 

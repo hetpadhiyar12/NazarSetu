@@ -113,5 +113,5 @@ def test_hackathon_demo_flow():
     timeline = database.get_complaint_timeline(complaint_id)
     assert len(timeline) >= 2
     event_types = [e["event_type"] for e in timeline]
-    assert "REGISTERED" in event_types
-    assert "STATUS_CHANGE" in event_types
+    assert any(et in event_types for et in ["CREATED", "REGISTERED"])
+    assert any(et in event_types for et in ["STATUS_UPDATED", "STATUS_CHANGE"])

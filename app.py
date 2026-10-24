@@ -324,9 +324,13 @@ with tab_report:
             if not confirm_checkbox:
                 st.error("Explicit citizen confirmation is required before submitting.")
             else:
-                with st.spinner("Writing persistent record to municipal database..."):
+                    uncertainties = analysis.get("uncertainty_flags", [])
+                    uncertainty_str = "; ".join(uncertainties) if uncertainties else "No visual uncertainties flagged."
+                    ai_mode_val = "AI_VERIFIED" if analysis.get("mode") == "openai_vision" else "FALLBACK_MANUAL"
+                    
                     confirmed_payload = {
                         "confirmed": True,
+                        "idempotency_key": database.generate_idempotency_key(p_state["image_hash"]),
                         "issue_type": corrected_category,
                         "description": corrected_desc,
                         "city": p_state["city"],
@@ -336,8 +340,10 @@ with tab_report:
                         "image_hash": p_state["image_hash"],
                         "priority": corrected_priority,
                         "status": STATUS_PENDING,
-                        "landmark": p_state.get("landmark"),
+                        "landmark": p_state.get("landmark", ""),
                         "visual_evidence": analysis.get("visual_evidence"),
+                        "uncertainty_notes": uncertainty_str,
+                        "ai_mode": ai_mode_val,
                     }
                     reg_res, reg_trail = agent.run_registration_agent_action(confirmed_payload)
                     

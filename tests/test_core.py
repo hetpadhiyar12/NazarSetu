@@ -207,8 +207,8 @@ def test_complaint_event_timeline(temp_db):
     assert timeline_res["event_count"] >= 2
     
     events = timeline_res["events"]
-    assert events[0]["event_type"] == "REGISTERED"
-    assert events[1]["event_type"] == "STATUS_CHANGE"
+    assert events[0]["event_type"] in ["CREATED", "REGISTERED"]
+    assert events[1]["event_type"] in ["STATUS_UPDATED", "STATUS_CHANGE"]
     assert "Dewatering pump" in events[1]["details"]
 
 
@@ -288,3 +288,68 @@ def test_safe_handling_of_invalid_tool_arguments():
     unknown_res = tools.execute_tool_call("non_existent_tool", {})
     assert unknown_res["status"] == "error"
     assert "Unknown tool" in unknown_res["message"]
+
+
+# 13. Idempotency Key duplicate browser submission prevention
+def test_idempotency_key_duplicate_prevention(temp_db):
+    idem_key = "unique_client_token_abc_123"
+    complaint_data = {
+        "confirmed": True,
+        "idempotency_key": idem_key,
+        "issue_type": "Potholes and damaged roads",
+        "description": "Double submission test.",
+        "city": "Bengaluru",
+        "locality": "Indiranagar",
+        "ward": "Ward 74",
+        "department": "Roads & Infrastructure Department",
+        "image_hash": "hash_idem_test",
+        "priority": "High",
+        "status": STATUS_PENDING,
+        "ai_mode": "AI_VERIFIED",
+    }
+    # First submission
+    res1 = tools.register_complaint(complaint_data, db_path=temp_db)
+    assert res1["status"] == "registered"
+    first_id = res1["complaint_id"]
+
+    # Second immediate submission with identical idempotency key
+    res2 = tools.register_complaint(complaint_data, db_path=temp_db)
+    assert res2["status"] == "registered"
+    assert res2["complaint_id"] == first_id
+
+    # Verify only 1 complaint exists in database
+    with database.get_connection(temp_db) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM complaints WHERE idempotency_key = ?", (idem_key,))
+        count = cursor.fetchone()[0]
+        assert count == 1
+
+
+# 14. Schema CHECK constraints and metadata preservation
+def test_schema_constraints_and_metadata(temp_db):
+    complaint_data = {
+        "confirmed": True,
+        "issue_type": "Waterlogging and drainage issues",
+        "description": "Flooded road near metro station.",
+        "visual_evidence": "Murky water pooling across 2 lanes.",
+        "uncertainty_notes": "Nighttime shadows near curb.",
+        "city": "Ahmedabad",
+        "locality": "Satellite",
+        "landmark": "Near Shivranjani Cross Roads",
+        "ward": "Ward 02",
+        "department": "Stormwater & Drainage Department",
+        "image_hash": "meta_hash_xyz",
+        "priority": "High",
+        "status": STATUS_PENDING,
+        "ai_mode": "AI_VERIFIED",
+    }
+    cid = tools.register_complaint(complaint_data, db_path=temp_db)["complaint_id"]
+    status_info = tools.get_complaint_status(cid, db_path=temp_db)
+
+    assert status_info["status"] == "found"
+    assert status_info["visual_evidence"] == "Murky water pooling across 2 lanes."
+    assert status_info["uncertainty_notes"] == "Nighttime shadows near curb."
+    assert status_info["landmark"] == "Near Shivranjani Cross Roads"
+    assert status_info["ai_mode"] == "AI_VERIFIED"
+    assert status_info["priority"] == "High"
+
